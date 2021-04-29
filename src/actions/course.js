@@ -24,10 +24,19 @@ const fetchCourses = (url) => async (dispatch) => {
   dispatch(fetchCoursesRequest);
   try {
     const { data: { data } } = await axios.get(url);
-    dispatch(fetchCoursesSuccess(data));
+    const courses = data.reduce((acc, item) => {
+      acc.push({
+        title: item.attributes.title,
+        description: item.attributes.description,
+        image_url: item.attributes.image_url,
+        duration: item.attributes.duration,
+        slug: item.attributes.slug,
+      });
+      return acc;
+    }, []);
+    dispatch(fetchCoursesSuccess(courses));
   } catch (err) {
-    console.log(err);
-    dispatch(fetchCoursesFailure(err.response.data.error));
+    dispatch(fetchCoursesFailure());
   }
 };
 
