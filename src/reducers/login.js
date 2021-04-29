@@ -1,34 +1,34 @@
 import {
-  FETCH_COURSES_REQUEST,
-  FETCH_COURSES_SUCCESS,
-  FETCH_COURSES_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
 } from '../actionTypes/index';
 
 const initialState = {
   loading: false,
-  courseList: [],
+  token: '',
   error: '',
 };
 
-const courseReducer = (state = initialState, { type, payload }) => {
+const loginReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case FETCH_COURSES_REQUEST:
+    case LOGIN_REQUEST:
       return {
         ...state,
         loading: true,
       };
 
-    case FETCH_COURSES_SUCCESS:
+    case LOGIN_SUCCESS:
       return {
         loading: false,
-        courseList: payload,
+        token: payload,
         error: '',
       };
 
-    case FETCH_COURSES_FAILURE:
+    case LOGIN_FAILURE:
       return {
         loading: false,
-        courseList: [],
+        token: '',
         error: payload,
       };
 
@@ -37,4 +37,4 @@ const courseReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default courseReducer;
+export default loginReducer;

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { signupUser } from '../../../actions/index';
 
 function Registration() {
+  const dispatch = useDispatch();
+
   const [state, setState] = useState({
     username: '',
     password: '',
@@ -18,22 +21,11 @@ function Registration() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    axios.post(
-      'http://127.0.0.1:3001/api//v1/signup', {
-        user: {
-          username: state.username,
-          password: state.password,
-          password_confirmation: state.password_confirmation,
-        },
-      },
-    )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error.response.data.error);
-      });
+    dispatch(signupUser({
+      username: state.username,
+      password: state.password,
+      password_confirmation: state.password_confirmation,
+    }));
   };
 
   // setState((prevState) => ({ ...prevState, title: value }));
@@ -74,3 +66,5 @@ function Registration() {
 }
 
 export default Registration;
+
+// document.getElementById('new-book-form').reset();
