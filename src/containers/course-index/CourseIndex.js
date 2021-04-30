@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import fetchCourses from '../../actions/course';
 import CourseItem from '../../components/course-item/courseItem';
-// import PropTypes from 'prop-types';
 
 const COURSES_URL = 'http://localhost:3001/api/v1/courses';
 
@@ -38,6 +37,3 @@ function CourseIndex() {
 }
 
 export default CourseIndex;
-// CourseIndex.propTypes = {
-//   loggedInStatus: PropTypes.string.isRequired,
-// };
