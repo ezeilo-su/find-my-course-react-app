@@ -11,7 +11,7 @@ const Footer = () => (
       <div className="footer-wrap row">
 
         <div className="col-md-3 footer-brand-wrap">
-          <a href="/" className="footer-brand">MealsCatalogue</a>
+          <a href="/" className="footer-brand">Find My Course</a>
         </div>
 
         <div className="col-md-3 privacy-text">Privacy policy Terms &amp; Conditions</div>

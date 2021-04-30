@@ -8,7 +8,8 @@ import Error from './components/error/Error';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
 import CoursePage from './components/course-page/CoursePage';
-import CourseIndex from './containers/course-index/CourseIndex';
+// import CourseIndex from './containers/course-index/CourseIndex';
+import Registration from './components/registration/Registration';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -20,9 +21,11 @@ export default function App() {
     <BrowserRouter>
       <div className="app">
         <Navbar />
+        <Registration />
         <Switch>
-          <Route exact path="/" component={CourseIndex} />
+          {/* <Route exact path="/" component={CourseIndex} /> */}
           <Route path="/:slug" component={CoursePage} />
+          <Route path="/signup" component={Registration} />
           <Route component={Error} />
         </Switch>
         <Footer />
