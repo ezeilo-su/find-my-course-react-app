@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // import React, { useState } from 'react';
 // import { useSelector } from 'react-redux';
-// import Registration from '../registration/Registration';
 
 export default function Navbar() {
   // const [state, setstate] = useState({

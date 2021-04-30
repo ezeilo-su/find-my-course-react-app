@@ -22,19 +22,34 @@ export const signupFailure = (error) => ({
   payload: error,
 });
 
+function formatErrorMessages(error) {
+  return Object.keys(error)
+    .reduce((keyAcc, key) => {
+      const errs = error[key].reduce((errAcc, item) => {
+        errAcc.push(`${key} ${item}`);
+        return errAcc;
+      }, []);
+      return [...keyAcc, ...errs];
+    }, []);
+}
+
 const signupUser = (user) => async (dispatch) => {
   dispatch(signupRequest);
   try {
-    const res = await axios.post(SIGNUP_URL, {
+    const { data } = await axios.post(SIGNUP_URL, {
       user: {
         username: user.username,
         password: user.password,
         password_confirmation: user.password_confirmation,
       },
     });
-    dispatch(signupSuccess(res.data));
-  } catch (err) {
-    dispatch(signupFailure(err.response.data.error));
+    localStorage.setItem('auth_token', data.token);
+    dispatch(signupSuccess({
+      token: data.token,
+      username: data.username,
+    }));
+  } catch ({ response: { data: { error } } }) {
+    dispatch(signupFailure(formatErrorMessages(error)));
   }
 };
 

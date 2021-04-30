@@ -7,7 +7,7 @@ import {
 const initialState = {
   loading: false,
   user: {},
-  error: '',
+  error: null,
 };
 
 const signupReducer = (state = initialState, { type, payload }) => {
@@ -22,7 +22,7 @@ const signupReducer = (state = initialState, { type, payload }) => {
       return {
         loading: false,
         user: payload,
-        error: '',
+        error: null,
       };
 
     case ADD_USER_FAILURE:

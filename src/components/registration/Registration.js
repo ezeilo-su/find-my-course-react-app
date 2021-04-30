@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+// import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import signupUser from '../../actions/signup';
+import SignupError from './SignupError';
 
 function Registration() {
+  // const history = useHistory();
   const dispatch = useDispatch();
+  const signup = useSelector((state) => state.signup);
 
   const [state, setState] = useState({
     username: '',
@@ -28,8 +33,22 @@ function Registration() {
     }));
   };
 
+  if (signup.user.token) {
+    // alert('Registration successful!');
+    // return <Redirect to="/" />;
+    return (
+      <Redirect
+        to={{
+          pathname: '/',
+          message: 'Account registration successful!',
+        }}
+      />
+    );
+  }
+
   return (
     <div className="container-fluid">
+      { signup.error && <SignupError error={signup.error} /> }
       <form className="px-4 py-3 col-md-4" onSubmit={handleSubmit}>
         <div className="form-group">
           {/* <label htmlFor="exampleDropdownFormEmail1">Email address</label> */}

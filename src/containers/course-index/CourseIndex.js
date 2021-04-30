@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import fetchCourses from '../../actions/course';
 import CourseItem from '../../components/course-item/courseItem';
 
@@ -7,6 +8,7 @@ const COURSES_URL = 'http://localhost:3001/api/v1/courses';
 
 function CourseIndex() {
   const dispatch = useDispatch();
+  const { message } = useLocation();
 
   useEffect(() => {
     dispatch(fetchCourses(COURSES_URL));
@@ -24,6 +26,7 @@ function CourseIndex() {
 
   return (
     <div className="courses container-fluid">
+      { message && <p className="alert alert-success">{ message }</p> }
       <h2>AllCourses here!</h2>
       <div className="course-list row">
         {
