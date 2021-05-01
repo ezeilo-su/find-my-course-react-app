@@ -7,14 +7,6 @@ import Dashboard from '../dashboard/Dashboard';
 
 export default function Navbar() {
   const user = useSelector((state) => state.loggedInUser);
-  // const [state, setstate] = useState({
-  //   loginBtnClicked: false,
-  //   logoutBtnClicked: true,
-  // });
-
-  // function gettBtn(params) {
-
-  // }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light pr-4">
@@ -42,10 +34,11 @@ export default function Navbar() {
             <a className="nav-link" href="/">Favorites</a>
           </li>
           <li className="nav-item">
-            <Link to="/signup" className="nav-link">Register</Link>
+            { !user.loggedIn && <Link to="/signup" className="nav-link">Register</Link> }
           </li>
         </ul>
         { user.loggedIn ? <Dashboard username={user.username} avatarUrl="/broken-image.jpg" /> : <LoginForm /> }
+        { user.loggedIn && <Link to="/logout" className="ml-4">Logout</Link> }
       </div>
     </nav>
   );

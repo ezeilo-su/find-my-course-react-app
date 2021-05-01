@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import signupUser from '../../actions/signup';
 import SignupError from './SignupError';
+import loggedInUser from '../../actions/loggedInUser';
 
 function Registration() {
-  // const history = useHistory();
   const dispatch = useDispatch();
   const signup = useSelector((state) => state.signup);
 
@@ -14,7 +13,6 @@ function Registration() {
     username: '',
     password: '',
     password_confirmation: '',
-    registrationError: '',
   });
 
   const handleChange = (e) => {
@@ -27,13 +25,15 @@ function Registration() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signupUser({
-      username: state.username,
-      password: state.password,
-      password_confirmation: state.password_confirmation,
+      ...state,
     }));
   };
 
   if (signup.user.token) {
+    const { user } = signup;
+    user.loggedIn = true;
+    dispatch(loggedInUser(user));
+
     return (
       <Redirect
         to={{

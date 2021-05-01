@@ -47,7 +47,6 @@ const signupUser = (user) => async (dispatch) => {
     dispatch(signupSuccess({
       token: data.token,
       username: data.username,
-      loggedIn: true,
     }));
   } catch ({ response: { data: { error } } }) {
     dispatch(signupFailure(formatErrorMessages(error)));

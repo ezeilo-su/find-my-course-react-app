@@ -24,3 +24,4 @@ yarn-error.log*
 
 junks/
 .env
+src/components/home

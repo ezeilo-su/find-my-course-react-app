@@ -8,6 +8,7 @@ const initialState = {
   loading: false,
   user: {},
   error: null,
+  loggedIn: false,
 };
 
 const signupReducer = (state = initialState, { type, payload }) => {
@@ -23,6 +24,7 @@ const signupReducer = (state = initialState, { type, payload }) => {
         loading: false,
         user: payload,
         error: null,
+        loggedIn: true,
       };
 
     case ADD_USER_FAILURE:
@@ -30,6 +32,7 @@ const signupReducer = (state = initialState, { type, payload }) => {
         loading: false,
         user: {},
         error: payload,
+        loggedIn: false,
       };
 
     default:
