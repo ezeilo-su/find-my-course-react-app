@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import loggedInUser from './actions/loggedInUser';
+import { useDispatch } from 'react-redux';
 import './index.css';
 import './App.css';
-// import Error from './components/error/Error';
+import loggedInUser from './actions/loggedInUser';
+import Error from './components/error/Error';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
 // import CoursePage from './components/course-page/CoursePage';
@@ -13,12 +13,18 @@ import Registration from './components/registration/Registration';
 
 export default function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(loggedInUser(localStorage.getItem('auth_token')));
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (user) {
+      dispatch(loggedInUser(user));
+    } else {
+      dispatch(loggedInUser(null));
+    }
   }, []);
 
   return (
-    <div>
+    <div className="App">
       <BrowserRouter>
         <Navbar />
         <Footer />

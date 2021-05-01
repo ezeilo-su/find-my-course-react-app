@@ -43,10 +43,11 @@ const signupUser = (user) => async (dispatch) => {
         password_confirmation: user.password_confirmation,
       },
     });
-    localStorage.setItem('auth_token', data.token);
+    localStorage.setItem('loggedInUser', JSON.stringify(data));
     dispatch(signupSuccess({
       token: data.token,
       username: data.username,
+      loggedIn: true,
     }));
   } catch ({ response: { data: { error } } }) {
     dispatch(signupFailure(formatErrorMessages(error)));

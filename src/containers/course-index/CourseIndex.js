@@ -10,11 +10,11 @@ function CourseIndex() {
   const dispatch = useDispatch();
   const { message } = useLocation();
 
+  const courses = useSelector((state) => state.courses);
+
   useEffect(() => {
     dispatch(fetchCourses(COURSES_URL));
   }, []);
-
-  const courses = useSelector((state) => state.courses);
 
   if (courses.loading) {
     return <h2>Loading...</h2>;

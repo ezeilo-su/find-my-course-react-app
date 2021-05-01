@@ -1,8 +1,8 @@
 import { LOGIN_STATUS } from '../actionTypes/index';
 
-const loggedInUser = (token) => ({
+const loggedInUser = (currentUser) => ({
   type: LOGIN_STATUS,
-  payload: token,
+  payload: currentUser,
 });
 
 export default loggedInUser;

@@ -34,8 +34,6 @@ function Registration() {
   };
 
   if (signup.user.token) {
-    // alert('Registration successful!');
-    // return <Redirect to="/" />;
     return (
       <Redirect
         to={{
