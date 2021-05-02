@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import fetchCourse from '../../actions/course';
 import CourseItem from '../../components/course-item/CourseItem';
+import { COURSES_INDEX_URL } from '../../constants/constants';
 import './CourseIndex.css';
-
-const COURSES_URL = 'http://localhost:3001/api/v1/courses';
 
 function CourseIndex() {
   const dispatch = useDispatch();
@@ -14,7 +13,7 @@ function CourseIndex() {
   const courses = useSelector((state) => state.courses);
 
   useEffect(() => {
-    dispatch(fetchCourse(COURSES_URL, 'INDEX'));
+    dispatch(fetchCourse(COURSES_INDEX_URL, 'INDEX'));
   }, []);
 
   if (courses.loading) {

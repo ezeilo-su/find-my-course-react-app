@@ -5,11 +5,9 @@ import {
 } from '../actionTypes/index';
 
 import auth from './auth';
-import REQ_HEADER from '../constants/constants';
+import { REQ_HEADER, LOGIN_URL } from '../constants/constants';
 
 const axios = require('axios');
-
-const LOGIN_URL = 'https://findmycourse.herokuapp.com/api//v1/login';
 
 export const loginRequest = () => ({
   type: LOGIN_REQUEST,

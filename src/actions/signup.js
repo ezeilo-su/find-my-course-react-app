@@ -4,10 +4,9 @@ import {
   ADD_USER_FAILURE,
 } from '../actionTypes/index';
 import formatErrorMessages from '../utils/errorMessages';
+import { SIGNUP_URL } from '../constants/constants';
 
 const axios = require('axios');
-
-const SIGNUP_URL = 'https://findmycourse.herokuapp.com/api//v1/signup';
 
 export const signupRequest = () => ({
   type: ADD_USER_REQUEST,
