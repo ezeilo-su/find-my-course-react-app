@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import LoginForm from '../auth/LoginForm';
 import Dashboard from '../dashboard/Dashboard';
 
 export default function Navbar() {
-  const user = useSelector((state) => state.loggedInUser);
+  const auth = useSelector((state) => state.auth);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light pr-4">
@@ -34,11 +32,11 @@ export default function Navbar() {
             <a className="nav-link" href="/">Favorites</a>
           </li>
           <li className="nav-item">
-            { !user.loggedIn && <Link to="/signup" className="nav-link">Register</Link> }
+            { !auth.status && <Link to="/signup" className="nav-link">Register</Link> }
           </li>
         </ul>
-        { user.loggedIn ? <Dashboard username={user.username} avatarUrl="/broken-image.jpg" /> : <LoginForm /> }
-        { user.loggedIn && <Link to="/logout" className="ml-4">Logout</Link> }
+        { auth.status ? <Dashboard username={auth.username} avatarUrl="/broken-image.jpg" /> : <Link to="/login">Login</Link> }
+        { auth.status && <Link to="/logout" className="ml-4">Logout</Link> }
       </div>
     </nav>
   );

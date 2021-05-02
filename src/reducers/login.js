@@ -6,11 +6,12 @@ import {
 
 const initialState = {
   loading: false,
-  token: '',
-  error: '',
+  user: {},
+  error: null,
+  loggedIn: false,
 };
 
-const loginReducer = (state = initialState, { type, payload }) => {
+const LOGINReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOGIN_REQUEST:
       return {
@@ -21,15 +22,17 @@ const loginReducer = (state = initialState, { type, payload }) => {
     case LOGIN_SUCCESS:
       return {
         loading: false,
-        token: payload,
-        error: '',
+        user: payload,
+        error: null,
+        loggedIn: true,
       };
 
     case LOGIN_FAILURE:
       return {
         loading: false,
-        token: '',
+        user: {},
         error: payload,
+        loggedIn: false,
       };
 
     default:
@@ -37,4 +40,4 @@ const loginReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default loginReducer;
+export default LOGINReducer;

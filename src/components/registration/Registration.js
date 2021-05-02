@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import signupUser from '../../actions/signup';
 import SignupError from './SignupError';
-import loggedInUser from '../../actions/loggedInUser';
+import auth from '../../actions/auth';
+import './Registration.css';
 
 function Registration() {
   const dispatch = useDispatch();
@@ -31,8 +32,11 @@ function Registration() {
 
   if (signup.user.token) {
     const { user } = signup;
-    user.loggedIn = true;
-    dispatch(loggedInUser(user));
+    dispatch(auth({
+      status: true,
+      token: user.token,
+      username: user.username,
+    }));
 
     return (
       <Redirect
@@ -47,7 +51,7 @@ function Registration() {
   return (
     <div className="container-fluid">
       { signup.error && <SignupError error={signup.error} /> }
-      <form className="px-4 py-3 col-md-4" onSubmit={handleSubmit}>
+      <form className="px-4 py-3 col-md-4 signup-form mt-4" onSubmit={handleSubmit}>
         <div className="form-group">
           {/* <label htmlFor="exampleDropdownFormEmail1">Email address</label> */}
           <input

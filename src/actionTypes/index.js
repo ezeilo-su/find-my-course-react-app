@@ -30,4 +30,4 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
-export const LOGIN_STATUS = 'LOGIN_STATUS';
+export const AUTH_STATUS = 'AUTH_STATUS';

@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import loggedInUser from '../../actions/loggedInUser';
+import auth from '../../actions/auth';
 
 function Logout() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     localStorage.removeItem('loggedInUser');
-    dispatch(loggedInUser(null));
+    dispatch(auth());
   }, []);
 
   return (

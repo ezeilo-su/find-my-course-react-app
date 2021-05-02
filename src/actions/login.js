@@ -1,41 +1,52 @@
-// import {
-//   LOGIN_REQUEST,
-//   LOGIN_SUCCESS,
-//   LOGIN_FAILURE,
-// } from '../actionTypes/index';
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+} from '../actionTypes/index';
 
-// const axios = require('axios');
+import auth from './auth';
+import REQ_HEADER from '../constants/constants';
 
-// // const LOGIN_URL = 'http://127.0.0.1:3001/api//v1/login';
+const axios = require('axios');
 
-// export const loginRequest = () => ({
-//   type: LOGIN_REQUEST,
-// });
+const LOGIN_URL = 'http://127.0.0.1:3001/api//v1/login';
 
-// export const loginSuccess = (user) => ({
-//   type: LOGIN_SUCCESS,
-//   payload: user,
-// });
+export const loginRequest = () => ({
+  type: LOGIN_REQUEST,
+});
 
-// export const loginFailure = (error) => ({
-//   type: LOGIN_FAILURE,
-//   payload: error,
-// });
+export const loginSuccess = (user) => ({
+  type: LOGIN_SUCCESS,
+  payload: user,
+});
 
-// const loginUser = (user) => async (dispatch) => {
-//   // dispatch(addUserRequest);
-//   // try {
-//   //   const res = await axios.post(SIGNUP_URL, {
-//   //     user: {
-//   //       username: user.username,
-//   //       password: user.password,
-//   //       password_confirmation: user.password_confirmation,
-//   //     },
-//   //   });
-//   //   dispatch(addUserSuccess(res.data));
-//   // } catch (err) {
-//   //   dispatch(addUserFailure(err.response.data.error));
-//   // }
-// };
+export const loginFailure = (error) => ({
+  type: LOGIN_FAILURE,
+  payload: error,
+});
 
-// export default loginUser;
+const loginUser = (user) => async (dispatch) => {
+  dispatch(loginRequest);
+  try {
+    const { data } = await axios.post(LOGIN_URL, {
+      username: user.username,
+      password: user.password,
+    }, REQ_HEADER);
+
+    localStorage.setItem('loggedInUser', JSON.stringify(data));
+    dispatch(loginSuccess({
+      token: data.token,
+      username: data.username,
+    }));
+
+    dispatch(auth({
+      status: true,
+      token: user.token,
+      username: user.username,
+    }));
+  } catch {
+    dispatch(loginFailure(['Invalid login. Try again!']));
+  }
+};
+
+export default loginUser;

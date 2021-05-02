@@ -3,6 +3,7 @@ import {
   ADD_USER_SUCCESS,
   ADD_USER_FAILURE,
 } from '../actionTypes/index';
+import formatErrorMessages from '../utils/errorMessages';
 
 const axios = require('axios');
 
@@ -21,17 +22,6 @@ export const signupFailure = (error) => ({
   type: ADD_USER_FAILURE,
   payload: error,
 });
-
-function formatErrorMessages(error) {
-  return Object.keys(error)
-    .reduce((keyAcc, key) => {
-      const errs = error[key].reduce((errAcc, item) => {
-        errAcc.push(`${key} ${item}`);
-        return errAcc;
-      }, []);
-      return [...keyAcc, ...errs];
-    }, []);
-}
 
 const signupUser = (user) => async (dispatch) => {
   dispatch(signupRequest);
