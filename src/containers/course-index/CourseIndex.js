@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import fetchCourses from '../../actions/course';
+import fetchCourse from '../../actions/course';
 import CourseItem from '../../components/course-item/CourseItem';
 import './CourseIndex.css';
 
@@ -14,7 +14,7 @@ function CourseIndex() {
   const courses = useSelector((state) => state.courses);
 
   useEffect(() => {
-    dispatch(fetchCourses(COURSES_URL));
+    dispatch(fetchCourse(COURSES_URL, 'INDEX'));
   }, []);
 
   if (courses.loading) {

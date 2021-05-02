@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 function CourseItem({ course }) {
   return (
     <Link
-      to={`/courses/${course.slug}`}
+      to={{
+        pathname: `/courses/${course.slug}`,
+      }}
       className="card course-item col-md-6 col-lg-4 text-decoration-none"
       style={{ width: '18rem' }}
     >

@@ -6,24 +6,27 @@ import {
 
 const axios = require('axios');
 
-export const fetchCoursesRequest = () => ({
+export const fetchCourseRequest = () => ({
   type: FETCH_COURSES_REQUEST,
 });
 
-export const fetchCoursesSuccess = (courses) => ({
+export const fetchCourseSuccess = (courses) => ({
   type: FETCH_COURSES_SUCCESS,
   payload: courses,
 });
 
-export const fetchCoursesFailure = (error) => ({
+export const fetchCourseFailure = (error) => ({
   type: FETCH_COURSES_FAILURE,
   payload: error,
 });
 
-const fetchCourses = (url) => async (dispatch) => {
-  dispatch(fetchCoursesRequest);
+const fetchCourse = (url, type) => async (dispatch) => {
+  dispatch(fetchCourseRequest);
   try {
-    const { data: { data } } = await axios.get(url);
+    let { data: { data } } = await axios.get(url);
+    if (type === 'SHOW') {
+      data = [data];
+    }
     const courses = data.reduce((acc, item) => {
       acc.push({
         title: item.attributes.title,
@@ -34,10 +37,10 @@ const fetchCourses = (url) => async (dispatch) => {
       });
       return acc;
     }, []);
-    dispatch(fetchCoursesSuccess(courses));
+    dispatch(fetchCourseSuccess(courses));
   } catch (err) {
-    dispatch(fetchCoursesFailure());
+    dispatch(fetchCourseFailure(err.message));
   }
 };
 
-export default fetchCourses;
+export default fetchCourse;
