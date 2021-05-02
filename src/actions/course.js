@@ -6,16 +6,16 @@ import {
 
 const axios = require('axios');
 
-export const fetchCourseRequest = () => ({
+const fetchCourseRequest = () => ({
   type: FETCH_COURSES_REQUEST,
 });
 
-export const fetchCourseSuccess = (courses) => ({
+const fetchCourseSuccess = (courses) => ({
   type: FETCH_COURSES_SUCCESS,
   payload: courses,
 });
 
-export const fetchCourseFailure = (error) => ({
+const fetchCourseFailure = (error) => ({
   type: FETCH_COURSES_FAILURE,
   payload: error,
 });

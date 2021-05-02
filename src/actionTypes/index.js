@@ -31,3 +31,8 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
 export const AUTH_STATUS = 'AUTH_STATUS';
+
+
+export const ADD_FAV_REQUEST = 'ADD_FAV_REQUEST';
+export const ADD_FAV_SUCCESS = 'ADD_FAV_SUCCESS';
+export const ADD_FAV_FAILURE = 'ADD_FAV_FAILURE';

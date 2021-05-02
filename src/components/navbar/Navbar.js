@@ -31,13 +31,21 @@ export default function Navbar() {
           <li className="nav-item">
             <a className="nav-link" href="/">Favorites</a>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             { !auth.status && <Link to="/signup" className="nav-link">Register</Link> }
-          </li>
+          </li> */}
         </ul>
         { auth.status ? <Dashboard username={auth.username} avatarUrl="/broken-image.jpg" /> : <Link to="/login">Login</Link> }
         { auth.status && <Link to="/logout" className="ml-4">Logout</Link> }
       </div>
+      { !auth.status && (
+      <Link
+        to="/signup"
+        className="nav-link text-decoration-none"
+      >
+        Register
+      </Link>
+      ) }
     </nav>
   );
 }

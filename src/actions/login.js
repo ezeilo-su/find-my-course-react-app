@@ -5,7 +5,7 @@ import {
 } from '../actionTypes/index';
 
 import auth from './auth';
-import { REQ_HEADER, LOGIN_URL } from '../constants/constants';
+import { LOGIN_URL } from '../constants/constants';
 
 const axios = require('axios');
 
@@ -29,7 +29,7 @@ const loginUser = (user) => async (dispatch) => {
     const { data } = await axios.post(LOGIN_URL, {
       username: user.username,
       password: user.password,
-    }, REQ_HEADER);
+    });
 
     localStorage.setItem('loggedInUser', JSON.stringify(data));
     dispatch(loginSuccess({
