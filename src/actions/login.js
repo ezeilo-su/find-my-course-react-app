@@ -9,7 +9,7 @@ import REQ_HEADER from '../constants/constants';
 
 const axios = require('axios');
 
-const LOGIN_URL = 'http://127.0.0.1:3001/api//v1/login';
+const LOGIN_URL = 'https://findmycourse.herokuapp.com/api//v1/login';
 
 export const loginRequest = () => ({
   type: LOGIN_REQUEST,

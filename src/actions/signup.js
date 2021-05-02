@@ -7,7 +7,7 @@ import formatErrorMessages from '../utils/errorMessages';
 
 const axios = require('axios');
 
-const SIGNUP_URL = 'http://127.0.0.1:3001/api//v1/signup';
+const SIGNUP_URL = 'https://findmycourse.herokuapp.com/api//v1/signup';
 
 export const signupRequest = () => ({
   type: ADD_USER_REQUEST,
