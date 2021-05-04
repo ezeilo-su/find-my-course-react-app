@@ -3,7 +3,7 @@ import {
   ADD_FAV_SUCCESS,
   ADD_FAV_FAILURE,
 } from '../../actionTypes/index';
-import { getRequestOptions, addSingleFavToLocalStorage } from '../../utils/utils';
+import { getRequestOptions } from '../../utils/utils';
 
 import { FAV_URL } from '../../constants/constants';
 import favorites from './favorites';
@@ -36,7 +36,6 @@ const addFavorites = (course, auth) => async (dispatch) => {
       },
     }, getRequestOptions(auth.token));
     dispatch(addFavSuccess(course));
-    addSingleFavToLocalStorage(course);
     dispatch(favorites([course]));
   } catch (error) {
     dispatch(addFavFailure(true));

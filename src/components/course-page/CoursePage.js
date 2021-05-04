@@ -15,7 +15,7 @@ function CoursePage() {
     dispatch(fetchCourses(COURSE_URL, 'SHOW'));
   }, []);
 
-  if (courses.courseList.length) {
+  if (!courses.courseList.length) {
     return <h2>Loading...</h2>;
   }
 

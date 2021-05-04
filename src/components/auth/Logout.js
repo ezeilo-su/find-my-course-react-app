@@ -8,7 +8,6 @@ function Logout() {
 
   useEffect(() => {
     localStorage.removeItem('loggedInUser');
-    localStorage.removeItem('favCourses');
     dispatch(auth());
   }, []);
 

@@ -27,26 +27,21 @@ export const fetchFavFailure = (error) => ({
 const fetchFavs = (auth) => async (dispatch) => {
   dispatch(fetchFavRequest);
   try {
-    let favCourses = JSON.parse(localStorage.getItem('favCourses'));
-    console.log(favCourses);
-    if (!favCourses?.length) {
-      if (!auth?.token) {
-        throw new Error('ACCESS DENIED!');
-      }
-      const { data: { data } } = await axios.get(FAV_URL, getRequestOptions(auth.token));
-      favCourses = data.reduce((acc, item) => {
-        acc.push({
-          title: item.attributes.title,
-          description: item.attributes.description,
-          image_url: item.attributes.image_url,
-          duration: item.attributes.duration,
-          slug: item.attributes.slug,
-        });
-        return acc;
-      }, []);
-      localStorage.setItem('favCourses', JSON.stringify(favCourses));
+    if (!auth?.token) {
+      throw new Error('ACCESS DENIED!');
     }
-    dispatch(fetchFavSuccess());
+    const { data: { data } } = await axios.get(FAV_URL, getRequestOptions(auth.token));
+    const favCourses = data.reduce((acc, item) => {
+      acc.push({
+        title: item.attributes.title,
+        description: item.attributes.description,
+        image_url: item.attributes.image_url,
+        duration: item.attributes.duration,
+        slug: item.attributes.slug,
+      });
+      return acc;
+    }, []);
+    dispatch(fetchFavSuccess(favCourses));
     dispatch(favorites(favCourses));
   } catch {
     dispatch(fetchFavFailure(true));

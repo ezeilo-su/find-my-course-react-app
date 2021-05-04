@@ -21,9 +21,9 @@ export function addSingleFavToLocalStorage(course) {
   let favorites;
   const existingFavs = localStorage.getItem('favCourses');
   if (existingFavs?.length) {
-    favorites = JSON.stringify([...existingFavs, course]);
+    favorites = [...existingFavs, course];
   } else {
     favorites = [course];
   }
-  localStorage.setItem('favCourses', favorites);
+  localStorage.setItem('favCourses', JSON.stringify(favorites));
 }
