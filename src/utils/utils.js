@@ -17,13 +17,13 @@ export function getRequestOptions(authToken) {
   };
 }
 
-export function addFavToLocalStorage(courseSlug) {
+export function addSingleFavToLocalStorage(course) {
   let favorites;
   const existingFavs = localStorage.getItem('favCourses');
-  if (existingFavs.length > 0) {
-    favorites = [...existingFavs, courseSlug];
+  if (existingFavs?.length) {
+    favorites = JSON.stringify([...existingFavs, course]);
   } else {
-    favorites = [courseSlug];
+    favorites = [course];
   }
   localStorage.setItem('favCourses', favorites);
 }

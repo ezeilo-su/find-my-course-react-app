@@ -5,6 +5,7 @@ import loginReducer from './login';
 import courseReducer from './course';
 import addFavReducer from './favorites/addFav';
 import favoritesReducer from './favorites/favorites';
+import fetchFavReducer from './favorites/fetchFavs';
 
 const rootReducer = combineReducers({
   signup: signupReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   addFav: addFavReducer,
   favorites: favoritesReducer,
+  fetchFavs: fetchFavReducer,
 });
 
 export default rootReducer;

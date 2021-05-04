@@ -21,7 +21,7 @@ function CourseIndex() {
   }
 
   if (courses.error) {
-    return <h2>Error loading courses</h2>;
+    return <h2 className="alert alert-warning">Error loading courses</h2>;
   }
 
   return (

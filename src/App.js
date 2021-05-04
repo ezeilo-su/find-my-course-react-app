@@ -12,7 +12,8 @@ import Login from './components/auth/Login';
 import CoursePage from './components/course-page/CoursePage';
 import CourseIndex from './containers/course-index/CourseIndex';
 import Registration from './components/registration/Registration';
-import FavoriteIndex from './components/favorites/FavoriteIndex';
+import FavIndex from './components/favorites/FavIndex';
+import fetchFavs from './actions/favorites/fetchFavs';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ export default function App() {
     } else {
       dispatch(auth());
     }
+    dispatch(fetchFavs(user));
   }, []);
 
   return (
@@ -41,7 +43,7 @@ export default function App() {
           <Route path="/logout" component={Logout} />
           <Route path="/login" component={Login} />
           <Route path="/courses/:slug" component={CoursePage} />
-          <Route path="/favorites" component={FavoriteIndex} />
+          <Route path="/favorites" component={FavIndex} />
           <Route component={Error} />
         </Switch>
       </BrowserRouter>

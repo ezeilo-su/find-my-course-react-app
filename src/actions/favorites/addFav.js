@@ -3,9 +3,9 @@ import {
   ADD_FAV_SUCCESS,
   ADD_FAV_FAILURE,
 } from '../../actionTypes/index';
-import { getRequestOptions } from '../../utils/utils';
+import { getRequestOptions, addSingleFavToLocalStorage } from '../../utils/utils';
 
-import { ADD_FAV_URL } from '../../constants/constants';
+import { FAV_URL } from '../../constants/constants';
 import favorites from './favorites';
 
 const axios = require('axios');
@@ -24,15 +24,19 @@ export const addFavFailure = (error) => ({
   payload: error,
 });
 
-const addFavorites = (course, authToken) => async (dispatch) => {
+const addFavorites = (course, auth) => async (dispatch) => {
   dispatch(addFavRequest);
   try {
-    await axios.post(ADD_FAV_URL, {
+    if (!auth?.token) {
+      throw new Error('ACCESS DENIED!');
+    }
+    await axios.post(FAV_URL, {
       favorite: {
         course_slug: course.slug,
       },
-    }, getRequestOptions(authToken));
+    }, getRequestOptions(auth.token));
     dispatch(addFavSuccess(course));
+    addSingleFavToLocalStorage(course);
     dispatch(favorites([course]));
   } catch (error) {
     dispatch(addFavFailure(true));

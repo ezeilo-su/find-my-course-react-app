@@ -10,7 +10,7 @@ function CourseItem({ course }) {
   const favorites = useSelector((state) => state.favorites);
 
   const handleAddToFavorites = () => {
-    dispatch(addFavorites(course, auth.token));
+    dispatch(addFavorites(course, auth));
   };
 
   const checkFav = (courseSlug) => favorites.map((fav) => fav.slug)
