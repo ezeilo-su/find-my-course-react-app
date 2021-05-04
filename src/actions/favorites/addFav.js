@@ -24,16 +24,16 @@ export const addFavFailure = (error) => ({
   payload: error,
 });
 
-const addFavorites = (courseSlug, authToken) => async (dispatch) => {
+const addFavorites = (course, authToken) => async (dispatch) => {
   dispatch(addFavRequest);
   try {
     await axios.post(ADD_FAV_URL, {
       favorite: {
-        course_slug: courseSlug,
+        course_slug: course.slug,
       },
     }, getRequestOptions(authToken));
-    dispatch(addFavSuccess([courseSlug]));
-    dispatch(favorites([courseSlug]));
+    dispatch(addFavSuccess(course));
+    dispatch(favorites([course]));
   } catch (error) {
     dispatch(addFavFailure(true));
   }
