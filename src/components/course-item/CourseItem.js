@@ -2,21 +2,20 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-// import { Link, Redirect } from 'react-router-dom';
 import addFavorites from '../../actions/favorites/addFav';
 
 function CourseItem({ course }) {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  const addFav = useSelector((state) => state.addFav);
   const favorites = useSelector((state) => state.favorites);
 
-  const handleAddToFavorites = (courseSlug) => {
-    dispatch(addFavorites(courseSlug, auth.token));
+  const handleAddToFavorites = () => {
+    dispatch(addFavorites(course, auth.token));
   };
 
-  const checkFav = (courseSlug) => favorites.includes(courseSlug);
-  
+  const checkFav = (courseSlug) => favorites.map((fav) => fav.slug)
+    .includes(courseSlug);
+
   return (
     <div
       className="card course-item col-md-6 col-lg-4 text-decoration-none"
@@ -36,7 +35,7 @@ function CourseItem({ course }) {
           <button
             type="button"
             className="btn btn-primary"
-            onClick={() => handleAddToFavorites(course.slug)}
+            onClick={handleAddToFavorites}
           >
             Add to favorites
           </button>
