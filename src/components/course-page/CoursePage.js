@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import fetchCourses from '../../actions/course';
 import './CoursePage.css';
@@ -15,14 +15,13 @@ function CoursePage() {
     dispatch(fetchCourses(COURSE_URL, 'SHOW'));
   }, []);
 
-  if (courses.loading) {
+  if (courses.courseList.length) {
     return <h2>Loading...</h2>;
   }
 
   if (courses.error) {
     return <h2 className="alert alert-success">Error fetching item</h2>;
   }
-
   const course = courses.courseList[0];
 
   return (
@@ -34,7 +33,7 @@ function CoursePage() {
         <h5 className="card-title course-title">{course.title}</h5>
         <p className="card-text course-description">{course.description}</p>
         <p className="card-text course-duration">{course.duration}</p>
-        <Link to="/" className="btn btn-primary">Add to favorites</Link>
+        <button type="button" className="btn btn-primary">Add to favorites</button>
       </div>
     </div>
   );

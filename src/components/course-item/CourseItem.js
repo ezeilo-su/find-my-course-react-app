@@ -1,24 +1,48 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+// import { Link, Redirect } from 'react-router-dom';
+import addFavorites from '../../actions/favorites/addFav';
 
 function CourseItem({ course }) {
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const addFav = useSelector((state) => state.addFav);
+  const favorites = useSelector((state) => state.favorites);
+
+  const handleAddToFavorites = (courseSlug) => {
+    dispatch(addFavorites(courseSlug, auth.token));
+  };
+
+  const checkFav = (courseSlug) => favorites.includes(courseSlug);
+  
   return (
-    <Link
-      to={{
-        pathname: `/courses/${course.slug}`,
-      }}
+    <div
       className="card course-item col-md-6 col-lg-4 text-decoration-none"
       style={{ width: '18rem' }}
     >
-      <img className="card-img-top" src={course.image_url} alt={course.slug} />
-      <div className="card-body">
-        <h5 className="card-title course-title">{course.title}</h5>
-        <p className="card-text course-description">{course.description}</p>
-        <p className="card-text course-duration">{course.duration}</p>
-        <Link to="/" className="btn btn-primary">Add to favorites</Link>
-      </div>
-    </Link>
+      <Link to={`/courses/${course.slug}`}>
+        <img className="card-img-top" src={course.image_url} alt={course.slug} />
+        <div className="card-body">
+          <h5 className="card-title course-title">{course.title}</h5>
+          <p className="card-text course-description">{course.description}</p>
+        </div>
+      </Link>
+      <p className="card-text ml-3 course-duration">{course.duration}</p>
+
+      {
+        !checkFav(course.slug) ? (
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => handleAddToFavorites(course.slug)}
+          >
+            Add to favorites
+          </button>
+        ) : <button type="button" className="btn btn-secondary" disabled>Favorite</button>
+      }
+    </div>
   );
 }
 

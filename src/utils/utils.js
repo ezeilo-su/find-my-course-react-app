@@ -18,9 +18,9 @@ export function getRequestOptions(authToken) {
 }
 
 export function addFavToLocalStorage(courseSlug) {
-  const favorites;
-  const existingFavs;
-  if(existingFavs = localStorage.getItem('favCourses')) {
+  let favorites;
+  const existingFavs = localStorage.getItem('favCourses');
+  if (existingFavs.length > 0) {
     favorites = [...existingFavs, courseSlug];
   } else {
     favorites = [courseSlug];

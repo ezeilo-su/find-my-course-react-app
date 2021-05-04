@@ -26,7 +26,6 @@ function CourseIndex() {
 
   return (
     <div className="course-index container-fluid">
-      { message && <p className="alert alert-success">{ message }</p> }
       <h2>ALL COURSES</h2>
       <div className="course-list row">
         {
