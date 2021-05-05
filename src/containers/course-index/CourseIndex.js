@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import auth from '../../actions/auth';
 import fetchCourse from '../../actions/course';
 import CourseItem from '../../components/course-item/CourseItem';
-import { COURSES_INDEX_URL } from '../../constants/constants';
+import { COURSES_URL } from '../../constants/constants';
 import './CourseIndex.css';
 
 function CourseIndex() {
@@ -15,7 +15,7 @@ function CourseIndex() {
   const addFav = useSelector((state) => state.addFav);
 
   useEffect(() => {
-    dispatch(fetchCourse(COURSES_INDEX_URL, 'INDEX'));
+    dispatch(fetchCourse(COURSES_URL, 'INDEX'));
     const user = JSON.parse(localStorage.getItem('loggedInUser'));
     if (user) {
       dispatch(auth({

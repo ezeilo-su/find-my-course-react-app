@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Dashboard from '../dashboard/Dashboard';
+import './Navbar.css';
 
 export default function Navbar() {
   const auth = useSelector((state) => state.auth);

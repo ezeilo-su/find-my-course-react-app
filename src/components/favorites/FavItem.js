@@ -29,7 +29,7 @@ function CourseItem({ course }) {
 
       <button
         type="button"
-        className="btn btn-primary"
+        className="btn btn-primary fav-button"
         onClick={handleRemoveFavorite}
       >
         Remove Favorite

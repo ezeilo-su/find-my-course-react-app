@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import fetchCourses from '../../actions/course';
 import addFavorites from '../../actions/favorites/addFav';
 import removeFavorite from '../../actions/favorites/removeFav';
+import { COURSES_URL } from '../../constants/constants';
+
 import './CoursePage.css';
 
 function CoursePage() {
@@ -11,13 +13,12 @@ function CoursePage() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const favorites = useSelector((state) => state.favorites);
-  const COURSE_URL = `http://localhost:3001/api/v1/courses/${slug}`;
 
   const courses = useSelector((state) => state.courses);
   const course = courses.courseList[0];
 
   useEffect(() => {
-    dispatch(fetchCourses(COURSE_URL, 'SHOW'));
+    dispatch(fetchCourses(`${COURSES_URL}/${slug}.json`, 'SHOW'));
   }, []);
 
   const handleAddToFavorites = () => {
@@ -52,7 +53,7 @@ function CoursePage() {
         !checkFav(course.slug) ? (
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-primary fav-button"
             onClick={handleAddToFavorites}
           >
             Add to favorites
@@ -60,10 +61,10 @@ function CoursePage() {
         ) : (
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-primary fav-button"
             onClick={handleRemoveFavorite}
           >
-            Remove Favorites
+            Remove Favorite
           </button>
         )
       }

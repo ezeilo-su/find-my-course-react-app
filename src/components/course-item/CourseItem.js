@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import addFavorites from '../../actions/favorites/addFav';
+import './CourseItem.css';
 
 function CourseItem({ course }) {
   const dispatch = useDispatch();
@@ -34,12 +35,12 @@ function CourseItem({ course }) {
         !checkFav(course.slug) ? (
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-primary fav-button"
             onClick={handleAddToFavorites}
           >
             Add to favorites
           </button>
-        ) : <button type="button" className="btn btn-secondary" disabled>Favorite</button>
+        ) : <button type="button" className="btn btn-secondary fav-button" disabled>Favorite</button>
       }
     </div>
   );
