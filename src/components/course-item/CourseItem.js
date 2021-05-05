@@ -20,7 +20,6 @@ function CourseItem({ course }) {
   return (
     <div
       className="card course-item col-md-6 col-lg-4 text-decoration-none"
-      style={{ width: '18rem' }}
     >
       <Link to={`/courses/${course.slug}`}>
         <img className="card-img-top" src={course.image_url} alt={course.slug} />
@@ -30,7 +29,6 @@ function CourseItem({ course }) {
         </div>
       </Link>
       <p className="card-text ml-3 course-duration">{course.duration}</p>
-
       {
         !checkFav(course.slug) ? (
           <button

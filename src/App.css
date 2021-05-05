@@ -1,25 +1,12 @@
-.fav-button {
-  width: 150px;
-  bottom: 15px;
-  font-size: 14px;
-  position: absolute;
-  margin-left: 15px;
-}
-
-.course-duration {
-  bottom: 40px;
-  position: absolute;
+.App {
+  width: 98%;
+  margin: 0 auto;
+  min-width: 320px;
 }
 
 @media (min-width: 768px) {
-  .fav-button {
-    width: 180px;
-    bottom: 15px;
-    position: absolute;
-    margin-left: 15px;
-  }
-
-  .course-duration {
-    bottom: 50px;
+  .App {
+    width: 95%;
+    padding: 0 30px;
   }
 }
