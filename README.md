@@ -2,7 +2,7 @@
 
 ![main page](home.png)
 
-> In this final capstone project, I built a website where users can browse a list of courses. The app makes an external API request to retrieve a list of courses from the server. The retrived API data is stored in the ```redux store``` and served the user on demand. Authenticated users can add any selected course to their favorites. The favorites list is always retrieved from the server on browser load, and stored in the ```redux store```. Users can view their list of favourite courses from a link provided. They can also remove any existing favourite course. 
+> In this final capstone project, I built a website where users can browse a list of courses. The app makes an external API request to retrieve a list of courses from the server. The retrieved API data is stored in the ```redux store``` and served the user on demand. Authenticated users can add any selected course to their favorites. The favorites list is always retrieved from the server on browser load, and stored in the ```redux store```. Users can view their list of favourite courses from a link provided. They can also remove any existing favourite course. 
 
 > ```React-Redux Hooks``` was used to fetch the requested data from the ```redux store```. 
 
