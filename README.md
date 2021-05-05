@@ -50,7 +50,11 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
-### Check out live demo [here](https://findmycourse.herokuapp.com/)
+### Live demo [here](https://findmycourse.herokuapp.com/)
+
+### Link to the front-end repo [here](https://github.com/ezeilo-su/find-my-course-react-app)
+
+### Link to the API repo [here](https://github.com/ezeilo-su/find-my-course-api)
 
 
 ## Author
