@@ -2,15 +2,23 @@
 
 ![main page](home.png)
 
-> In this final capstone project, I built a website where users can browse a list of courses. The app makes an external API request to retrieve a list of courses from the server. The retrieved API data is stored in the ```redux store``` and served the user on demand. Authenticated users can add any selected course to their favorites. The favorites list is always retrieved from the server on browser load, and stored in the ```redux store```. Users can view their list of favourite courses from a link provided. They can also remove any existing favourite course. 
+## Final Capstone Project - Find My Course
 
-> ```React-Redux Hooks``` was used to fetch the requested data from the ```redux store```. 
+> In this final capstone project, I completed the following tasks:
+- Use React and Redux to build a website where users can browse a list of courses.
+- Make external API requests to retrieve a list of courses from the server.
+- Store the retrieved API data in the ```redux store```.
+- Create and Remove courses from a list of favourites only if a given user is authenticated.
+- The favourites list is always retrieved from the server on browser load, and stored in the ```redux store```.
+- Render or remove the favourite courses from a link provided.
 
-> ```axios```, a client HTTP API  was used to make external API calls.
+- Use the ```React-Redux Hooks``` to fetch the requested data from the ```redux store```. 
 
-> ```redux-thunk``` middleware was used to allow an ```async action creator``` function to be returned on ```action dispatch```, instead of the action itself.
+- Use ```axios```, a client HTTP API to make external API calls.
 
-> The app was successfully tested and deployed on heroku.
+- Use the ```redux-thunk``` middleware ```async actions``` dispatch.
+
+- Deploy app on Heroku.
 
 ### Languages, Frameworks, Metthods
 
