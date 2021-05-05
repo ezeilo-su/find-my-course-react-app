@@ -39,8 +39,8 @@ const loginUser = (user) => async (dispatch) => {
 
     dispatch(auth({
       status: true,
-      token: user.token,
-      username: user.username,
+      token: data.token,
+      username: data.username,
     }));
   } catch {
     dispatch(loginFailure(['Invalid login. Try again!']));
