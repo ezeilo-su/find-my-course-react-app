@@ -24,7 +24,7 @@ export const addFavFailure = (error) => ({
   payload: error,
 });
 
-const addFavorites = (course, auth) => async (dispatch) => {
+const addFavorites = (course, auth) => async (dispatch, getState) => {
   dispatch(addFavRequest);
   try {
     if (!auth?.token) {
@@ -35,8 +35,9 @@ const addFavorites = (course, auth) => async (dispatch) => {
         course_slug: course.slug,
       },
     }, getRequestOptions(auth.token));
+    const favs = getState().favorites.slice(0);
     dispatch(addFavSuccess(course));
-    dispatch(favorites([course]));
+    dispatch(favorites([...favs, course]));
   } catch (error) {
     dispatch(addFavFailure(true));
   }

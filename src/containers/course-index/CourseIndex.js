@@ -44,7 +44,7 @@ function CourseIndex() {
       <div className="course-list row">
         {
           courses.courseList.map((thisCourse, idx) => (
-            <CourseItem course={thisCourse} key={`course${idx + 1}`} />
+            <CourseItem course={thisCourse} page="COURSE_INDEX" key={`course${idx + 1}`} />
           ))
         }
       </div>

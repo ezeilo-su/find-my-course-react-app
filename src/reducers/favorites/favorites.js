@@ -5,7 +5,7 @@ const initialState = [];
 const favoritesReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FAVORITES:
-      return [...state, ...payload];
+      return payload;
 
     default:
       return state;
