@@ -1,0 +1,22 @@
+.course-page {
+  height: 62vh;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 120px;
+}
+
+.course-page .course-duration {
+  bottom: 62px;
+}
+
+@media (min-width: 576px) {
+  .course-page {
+    height: 70vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .course-page {
+    height: 90vh;
+  }
+}
