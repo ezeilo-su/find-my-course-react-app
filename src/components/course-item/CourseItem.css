@@ -1,0 +1,14 @@
+.course-item {
+  margin-bottom: 30px;
+}
+
+.fav-item .card-title,
+.course-item .card-title {
+  width: 100%;
+  font-weight: bold;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 0 10px;
+}
